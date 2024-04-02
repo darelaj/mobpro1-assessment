@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Assessment 1</string>
+    <string name="konverter_intro">Aplikasi konverter mata uang Rupiah Indonesia (IDR) menjadi mata uang asing</string>
+    <string name="rupiah">Rupiah Indonesia</string>
 </resources>
