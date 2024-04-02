@@ -2,4 +2,10 @@
     <string name="app_name">Assessment 1</string>
     <string name="konverter_intro">Aplikasi konverter mata uang Rupiah Indonesia (IDR) menjadi mata uang asing</string>
     <string name="rupiah">Rupiah Indonesia</string>
+    <string name="dolar_amerika">Dolar Amerika</string>
+    <string name="euro">Euro</string>
+    <string name="ringgit">Ringgit Malaysia</string>
+    <string name="yen">Yen Jepang</string>
+    <string name="dolar_singapur">Dolar Singapur</string>
+    <string name="mata_uang_asing">Mata Uang Asing</string>
 </resources>

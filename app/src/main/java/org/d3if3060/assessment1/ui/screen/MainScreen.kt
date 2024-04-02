@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -46,6 +49,7 @@ fun MainScreen() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenContent(modifier: Modifier) {
 
@@ -53,8 +57,24 @@ fun ScreenContent(modifier: Modifier) {
         mutableStateOf("")
     }
 
-    var uangAsing by remember {
+    var hasilUangAsing by remember {
         mutableStateOf("")
+    }
+
+    var expanded by remember {
+        mutableStateOf(false)
+    }
+
+    val mataUangAsing = listOf(
+        stringResource(id = R.string.dolar_amerika),
+        stringResource(id = R.string.euro),
+        stringResource(id = R.string.ringgit),
+        stringResource(id = R.string.yen),
+        stringResource(id = R.string.dolar_singapur)
+    )
+
+    var dropdownOptions by remember {
+        mutableStateOf(mataUangAsing[0])
     }
 
     Column(
@@ -80,6 +100,41 @@ fun ScreenContent(modifier: Modifier) {
             ),
             modifier = Modifier.fillMaxWidth()
         )
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = {expanded = it},
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            OutlinedTextField(
+                modifier = Modifier
+                    .menuAnchor()
+                    .fillMaxWidth(),
+                value = dropdownOptions,
+                onValueChange = {},
+                readOnly = true,
+                singleLine = true,
+                label = { Text(text = stringResource(id = R.string.mata_uang_asing)) },
+                trailingIcon = {ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)},
+                colors = ExposedDropdownMenuDefaults.textFieldColors(),
+            )
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.fillMaxWidth()
+            )
+            {
+                mataUangAsing.forEach { item ->
+                    DropdownMenuItem(
+                        text = { Text(text = item) },
+                        onClick = {
+                            dropdownOptions = item
+                            expanded = false
+                        },
+                        contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                    )
+                }
+            }
+        }
     }
 }
 
