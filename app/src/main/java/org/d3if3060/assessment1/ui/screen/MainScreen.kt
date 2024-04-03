@@ -3,6 +3,7 @@ package org.d3if3060.assessment1.ui.screen
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,7 +32,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -173,7 +173,23 @@ fun ScreenContent(modifier: Modifier) {
                 }
             }
         }
-        Row {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Button(
+                onClick = {
+                    rupiah = ""
+                    hasilUangAsing = 0f
+                    expanded = false
+                    rupiahError = false
+                    kodeMataUang = ""
+                    dropdownOptions = mataUangAsing[0]
+                },
+                modifier = Modifier.padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+            ) {
+                Text(text = stringResource(id = R.string.reset))
+            }
             Button(
                 onClick = {
                     rupiahError = (rupiah == "" || rupiah == "0")
@@ -188,7 +204,9 @@ fun ScreenContent(modifier: Modifier) {
                     }
 
                     hasilUangAsing = konversi(rupiah.toFloat(), kodeMataUang)
-                }
+                },
+                modifier = Modifier.padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
             ) {
                 Text(text = stringResource(id = R.string.hitung))
             }
