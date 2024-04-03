@@ -10,12 +10,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -64,6 +67,10 @@ fun ScreenContent(modifier: Modifier) {
         mutableStateOf("")
     }
 
+    var rupiahError by remember {
+        mutableStateOf(false)
+    }
+
     var hasilUangAsing by remember {
         mutableFloatStateOf(0f)
     }
@@ -105,7 +112,10 @@ fun ScreenContent(modifier: Modifier) {
             value = rupiah,
             onValueChange = {rupiah = it},
             label = { Text(text = stringResource(id = R.string.rupiah))},
+            isError = rupiahError,
             leadingIcon = { Text(text = "Rp.")},
+            trailingIcon = { IconPicker(isError = rupiahError, unit = "") },
+            supportingText = { ErrorHint(isError = rupiahError) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -151,6 +161,9 @@ fun ScreenContent(modifier: Modifier) {
         Row {
             Button(
                 onClick = {
+                    rupiahError = (rupiah == "" || rupiah == "0")
+                    if (rupiahError) return@Button
+
                     when(dropdownOptions) {
                         mataUangAsing[0] -> kodeMataUang = "USD"
                         mataUangAsing[1] -> kodeMataUang = "EUR"
@@ -191,6 +204,24 @@ private fun konversi(rupiah: Float, mataUangAsing: String): Float {
         "JPY" -> rupiah / 105
         "SGD" -> rupiah / 11794
         else -> rupiah
+    }
+}
+@Composable
+fun IconPicker(isError: Boolean, unit: String) {
+    if (isError) {
+        Icon(
+            imageVector = Icons.Filled.Warning,
+            contentDescription = null
+        )
+    } else {
+        Text(text = unit)
+    }
+}
+
+@Composable
+fun ErrorHint(isError: Boolean) {
+    if(isError) {
+        Text(text = stringResource(id = R.string.input_invalid))
     }
 }
 
