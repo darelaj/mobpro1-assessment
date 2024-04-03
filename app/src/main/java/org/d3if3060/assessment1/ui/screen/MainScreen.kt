@@ -32,6 +32,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -77,19 +78,19 @@ fun MainScreen(navController: NavHostController) {
 @Composable
 fun ScreenContent(modifier: Modifier) {
 
-    var rupiah by remember {
+    var rupiah by rememberSaveable {
         mutableStateOf("")
     }
 
-    var rupiahError by remember {
+    var rupiahError by rememberSaveable {
         mutableStateOf(false)
     }
 
-    var hasilUangAsing by remember {
+    var hasilUangAsing by rememberSaveable {
         mutableFloatStateOf(0f)
     }
 
-    var expanded by remember {
+    var expanded by rememberSaveable {
         mutableStateOf(false)
     }
 
@@ -101,11 +102,11 @@ fun ScreenContent(modifier: Modifier) {
         stringResource(id = R.string.dolar_singapur)
     )
 
-    var dropdownOptions by remember {
+    var dropdownOptions by rememberSaveable {
         mutableStateOf(mataUangAsing[0])
     }
 
-    var kodeMataUang by remember {
+    var kodeMataUang by rememberSaveable {
         mutableStateOf("")
     }
 
