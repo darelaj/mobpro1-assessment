@@ -10,4 +10,6 @@
     <string name="mata_uang_asing">Mata Uang Asing</string>
     <string name="hitung">Hitung</string>
     <string name="input_invalid">Tidak boleh kosong.</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="copyright">"Aplikasi konversi mata uang adalah aplikasi yang membantu dalam mengkonversi mata uang Rupiah (IDR) menjadi mata uang asing seperti Dolar Amerika (USD), Euro (EUR), Ringgit (MYR), Yen (JPY), dan Dolar Singapur (SGD). \n\nAplikasi ini dibuat untuk Assessment 1 Mata Kuliah Mobpro 1 \n\nCopyright © 2024 Darel Ajni Fahrezi \nAll rights reserved"</string>
 </resources>
