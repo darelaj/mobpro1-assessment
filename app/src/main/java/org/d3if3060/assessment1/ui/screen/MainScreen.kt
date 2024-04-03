@@ -3,12 +3,15 @@ package org.d3if3060.assessment1.ui.screen
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -21,6 +24,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -61,7 +65,7 @@ fun ScreenContent(modifier: Modifier) {
     }
 
     var hasilUangAsing by remember {
-        mutableStateOf("")
+        mutableFloatStateOf(0f)
     }
 
     var expanded by remember {
@@ -78,6 +82,10 @@ fun ScreenContent(modifier: Modifier) {
 
     var dropdownOptions by remember {
         mutableStateOf(mataUangAsing[0])
+    }
+
+    var kodeMataUang by remember {
+        mutableStateOf("")
     }
 
     Column(
@@ -140,6 +148,49 @@ fun ScreenContent(modifier: Modifier) {
                 }
             }
         }
+        Row {
+            Button(
+                onClick = {
+                    when(dropdownOptions) {
+                        mataUangAsing[0] -> kodeMataUang = "USD"
+                        mataUangAsing[1] -> kodeMataUang = "EUR"
+                        mataUangAsing[2] -> kodeMataUang = "MYR"
+                        mataUangAsing[3] -> kodeMataUang = "JPY"
+                        mataUangAsing[4] -> kodeMataUang = "SGD"
+                    }
+
+                    hasilUangAsing = konversi(rupiah.toFloat(), kodeMataUang)
+                }
+            ) {
+                Text(text = stringResource(id = R.string.hitung))
+            }
+        }
+
+        if(hasilUangAsing != 0f) {
+            Divider(
+                modifier = Modifier.padding(vertical = 8.dp),
+                thickness = 1.dp
+            )
+            when(kodeMataUang) {
+                "USD" -> Text(text = "US$" + String.format("%.2f", hasilUangAsing), style = MaterialTheme.typography.headlineLarge)
+                "EUR" -> Text(text = "€" + String.format("%.2f", hasilUangAsing), style = MaterialTheme.typography.headlineLarge)
+                "MYR" -> Text(text = "RM " + String.format("%.2f", hasilUangAsing), style = MaterialTheme.typography.headlineLarge)
+                "JPY" -> Text(text = "¥" + String.format("%.2f", hasilUangAsing), style = MaterialTheme.typography.headlineLarge)
+                "SGD" -> Text(text = "S$" + String.format("%.2f", hasilUangAsing), style = MaterialTheme.typography.headlineLarge)
+            }
+        }
+
+    }
+}
+
+private fun konversi(rupiah: Float, mataUangAsing: String): Float {
+    return when (mataUangAsing) {
+        "USD" -> rupiah / 15942
+        "EUR" -> rupiah / 17163
+        "MYR" -> rupiah / 3370
+        "JPY" -> rupiah / 105
+        "SGD" -> rupiah / 11794
+        else -> rupiah
     }
 }
 
