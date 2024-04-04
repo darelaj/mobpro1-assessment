@@ -1,5 +1,7 @@
 package org.d3if3060.assessment1.ui.screen
 
+import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -36,6 +38,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -109,6 +112,8 @@ fun ScreenContent(modifier: Modifier) {
     var kodeMataUang by rememberSaveable {
         mutableStateOf("")
     }
+
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
@@ -224,6 +229,18 @@ fun ScreenContent(modifier: Modifier) {
                 "JPY" -> Text(text = "¥" + String.format("%.2f", hasilUangAsing), style = MaterialTheme.typography.headlineLarge)
                 "SGD" -> Text(text = "S$" + String.format("%.2f", hasilUangAsing), style = MaterialTheme.typography.headlineLarge)
             }
+            Button(
+                onClick = {
+                    shareData(
+                        context = context,
+                        message = context.getString(R.string.bagikan_template, rupiah, dropdownOptions, hasilUangAsing)
+                    )
+                },
+                modifier = Modifier.padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+            ) {
+                Text(text = stringResource(id = R.string.bagikan))
+            }
         }
 
     }
@@ -237,6 +254,16 @@ private fun konversi(rupiah: Float, mataUangAsing: String): Float {
         "JPY" -> rupiah / 105
         "SGD" -> rupiah / 11794
         else -> rupiah
+    }
+}
+
+private fun shareData(context: Context, message: String) {
+    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, message)
+    }
+    if (shareIntent.resolveActivity(context.packageManager) != null) {
+        context.startActivity(shareIntent)
     }
 }
 @Composable
