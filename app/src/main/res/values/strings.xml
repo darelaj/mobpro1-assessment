@@ -16,4 +16,5 @@
     <string name="reset">Reset</string>
     <string name="bagikan">Bagikan</string>
     <string name="bagikan_template">Rupiah : %1$s \nMata Uang Asing : %2$s \nHasil Konversi : %3$.2f</string>
+    <string name="gambar_konversi">Gambar konversi uang</string>
 </resources>
