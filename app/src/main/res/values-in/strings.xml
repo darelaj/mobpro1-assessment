@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Assessment 1</string>
+    <string name="konverter_intro">Aplikasi konverter mata uang Rupiah Indonesia (IDR) menjadi mata uang asing</string>
+    <string name="rupiah">Rupiah Indonesia</string>
+    <string name="dolar_amerika">Dolar Amerika</string>
+    <string name="euro">Euro</string>
+    <string name="ringgit">Ringgit Malaysia</string>
+    <string name="yen">Yen Jepang</string>
+    <string name="dolar_singapur">Dolar Singapur</string>
+    <string name="mata_uang_asing">Mata Uang Asing</string>
+    <string name="hitung">Hitung</string>
+    <string name="input_invalid">Tidak boleh kosong.</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="copyright">Aplikasi konversi mata uang adalah aplikasi yang membantu dalam mengkonversi mata uang Rupiah (IDR) menjadi mata uang asing seperti Dolar Amerika (USD), Euro (EUR), Ringgit (MYR), Yen (JPY), dan Dolar Singapur (SGD). \\n\\nAplikasi ini dibuat untuk Assessment 1 Mata Kuliah Mobpro 1 \\n\\nCopyright © 2024 Darel Ajni Fahrezi \\nAll rights reserved</string>
+    <string name="kembali">Kembali</string>
+    <string name="reset">Reset</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="bagikan_template">Rupiah : %1$s \\nMata Uang Asing : %2$s \\nHasil Konversi : %3$.2f</string>
+    <string name="gambar_konversi">Gambar konversi uang</string>
+</resources>
