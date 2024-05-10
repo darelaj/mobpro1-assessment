@@ -7,10 +7,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -30,12 +35,14 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import org.d3if3060.assessment1.R
 import org.d3if3060.assessment1.ui.theme.Assessment1Theme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen() {
+fun DetailScreen(navController: NavHostController) {
 
     var nama by remember {
         mutableStateOf("")
@@ -47,7 +54,14 @@ fun DetailScreen() {
         stringResource(R.string.elektronik),
         stringResource(R.string.kecantikan),
         stringResource(R.string.makanan),
-
+        stringResource(R.string.kesehatan),
+        stringResource(R.string.pulsa),
+        stringResource(R.string.kebutuhan_harian),
+        stringResource(R.string.tagihan),
+        stringResource(R.string.travel),
+        stringResource(R.string.perlengkapan_rumah),
+        stringResource(R.string.fashion),
+        stringResource(R.string.lainnya)
     )
     var jenis by remember {
         mutableStateOf(jenisTransaksi[0])
@@ -59,11 +73,29 @@ fun DetailScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(id = R.string.tambah_catatan)) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.kembali),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                },
+                title = { Text(text = stringResource(R.string.tambah_laporan)) },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
-                )
+                ),
+                actions = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Outlined.Check,
+                            contentDescription = stringResource(R.string.simpan),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
             )
         }
     ) { padding ->
@@ -169,6 +201,6 @@ fun FormLaporan(
 @Composable
 fun DetailPreview() {
     Assessment1Theme {
-        DetailScreen()
+        DetailScreen(rememberNavController())
     }
 }

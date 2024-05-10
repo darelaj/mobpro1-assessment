@@ -30,13 +30,16 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import org.d3if3060.assessment1.R
 import org.d3if3060.assessment1.model.Laporan
+import org.d3if3060.assessment1.navigation.Screen
 import org.d3if3060.assessment1.ui.theme.Assessment1Theme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -49,11 +52,11 @@ fun MainScreen() {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {  }
+                onClick = { navController.navigate(Screen.FormBaru.route) }
             ) {
                 Icon(
                     imageVector = Icons.Filled.Add,
-                    contentDescription = stringResource(R.string.tambah_catatan),
+                    contentDescription = stringResource(R.string.tambah_laporan),
                     tint = MaterialTheme.colorScheme.primary
                 )
             }
@@ -130,6 +133,6 @@ fun ListItem(laporan: Laporan) {
 @Composable
 fun GreetingPreview() {
     Assessment1Theme {
-        MainScreen()
+        MainScreen(rememberNavController())
     }
 }
