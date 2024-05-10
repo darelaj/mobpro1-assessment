@@ -62,12 +62,12 @@ fun MainScreen(navController: NavHostController) {
             }
         }
     ) { padding ->
-        ScreenContent(Modifier.padding(padding))
+        ScreenContent(Modifier.padding(padding), navController)
     }
 }
 
 @Composable
-fun ScreenContent(modifier: Modifier) {
+fun ScreenContent(modifier: Modifier, navController: NavHostController) {
 
     val viewModel: MainViewModel = viewModel()
     val data = viewModel.data
@@ -89,7 +89,9 @@ fun ScreenContent(modifier: Modifier) {
             contentPadding = PaddingValues(bottom = 84.dp)
         ) {
             items(data) {
-                ListItem(laporan = it)
+                ListItem(laporan = it) {
+                    navController.navigate(Screen.FormUbah.withId(it.id))
+                }
                 Divider()
             }
         }
@@ -97,11 +99,11 @@ fun ScreenContent(modifier: Modifier) {
 }
 
 @Composable
-fun ListItem(laporan: Laporan) {
+fun ListItem(laporan: Laporan, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-//            .clickable { onClick() }
+            .clickable { onClick() }
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {

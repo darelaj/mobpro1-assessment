@@ -40,9 +40,11 @@ import androidx.navigation.compose.rememberNavController
 import org.d3if3060.assessment1.R
 import org.d3if3060.assessment1.ui.theme.Assessment1Theme
 
+const val KEY_ID_LAPORAN = "idLaporan"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navController: NavHostController) {
+fun DetailScreen(navController: NavHostController, id: Long? = null) {
 
     var nama by remember {
         mutableStateOf("")
@@ -82,7 +84,12 @@ fun DetailScreen(navController: NavHostController) {
                         )
                     }
                 },
-                title = { Text(text = stringResource(R.string.tambah_laporan)) },
+                title = {
+                    if(id == null)
+                        Text(text = stringResource(R.string.tambah_laporan))
+                    else
+                        Text(text = stringResource(R.string.edit_laporan))
+                        },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
