@@ -1,6 +1,7 @@
 package org.d3if3060.assessment1.ui.screen
 
 import android.content.res.Configuration
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -74,10 +75,11 @@ fun ScreenContent(modifier: Modifier) {
 }
 
 @Composable
-fun ListItem(laporan: Laporan) {
+fun ListItem(laporan: Laporan, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick() }
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
