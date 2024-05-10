@@ -20,4 +20,5 @@
     <string name="lainnya">Lainnya</string>
     <string name="tambah_laporan">Tambah laporan</string>
     <string name="edit_laporan">Ubah laporan</string>
+    <string name="invalid">Nama Transaksi, Jenis Transaksi dan Jumlah Transaksi tidak boleh kosong.</string>
 </resources>
