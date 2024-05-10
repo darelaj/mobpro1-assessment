@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Catatan Pengeluaran</string>
     <string name="data_kosong">Data kosong</string>
+    <string name="tambah_catatan">Tambah catatan</string>
 </resources>
