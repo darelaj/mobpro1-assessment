@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -51,13 +52,23 @@ fun ScreenContent(modifier: Modifier) {
     val viewModel: MainViewModel = viewModel()
     val data = viewModel.data
 
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-    ) {
-        items(data) {
-            ListItem(laporan = it)
-            Divider()
+    if(data.isEmpty()) {
+        Column(
+            modifier = modifier.fillMaxSize().padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = stringResource(R.string.data_kosong))
+        }
+    } else {
+        LazyColumn(
+            modifier = modifier
+                .fillMaxSize()
+        ) {
+            items(data) {
+                ListItem(laporan = it)
+                Divider()
+            }
         }
     }
 }
@@ -65,7 +76,9 @@ fun ScreenContent(modifier: Modifier) {
 @Composable
 fun ListItem(laporan: Laporan) {
     Column(
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
