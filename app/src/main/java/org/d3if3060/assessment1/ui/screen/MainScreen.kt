@@ -94,16 +94,16 @@ fun ScreenContent(modifier: Modifier) {
 }
 
 @Composable
-fun ListItem(laporan: Laporan, onClick: () -> Unit) {
+fun ListItem(laporan: Laporan) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() }
+//            .clickable { onClick() }
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            text = laporan.transaksi,
+            text = laporan.nama,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             fontWeight = FontWeight.Bold

@@ -1,5 +1,12 @@
 <resources>
-    <string name="app_name">Catatan Pengeluaran</string>
+    <string name="app_name">Laporan Pengeluaran</string>
     <string name="data_kosong">Data kosong</string>
     <string name="tambah_catatan">Tambah catatan</string>
+    <string name="nama_laporan">Nama Laporan</string>
+    <string name="jumlah_pengeluaran">Jumlah pengeluaran</string>
+    <string name="elektronik">Elektronik</string>
+    <string name="kecantikan">Kecantikan</string>
+    <string name="makanan">Makanan</string>
+    <string name="jenis_transaksi">Jenis transaksi</string>
+    <string name="copyright">© 2024 Darel Ajni Fahrezi</string>
 </resources>
