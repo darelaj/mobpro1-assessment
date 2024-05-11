@@ -21,5 +21,8 @@ interface LaporanDao {
 
     @Query("SELECT * FROM laporan WHERE id = :id")
     suspend fun getLaporanById(id: Long): Laporan?
+    
+    @Query("DELETE FROM laporan WHERE id = :id")
+    suspend fun deleteById(id: Long)
 
 }
