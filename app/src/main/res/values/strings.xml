@@ -23,4 +23,7 @@
     <string name="invalid">Nama Transaksi, Jenis Transaksi dan Jumlah Transaksi tidak boleh kosong.</string>
     <string name="opsi_lainnya">Opsi lainnya</string>
     <string name="hapus">Hapus</string>
+    <string name="pesan_hapus">Hapus catatan ini?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
 </resources>
